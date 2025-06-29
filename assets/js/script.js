@@ -21,3 +21,27 @@ console.log(cardArray);
 let cardCounts = {};
 let matchedCardCount = 0;
 let attemptsMade = 0;
+
+// Wait for the DOM to finish loading before running the game
+// add event listeners to the start button
+document.addEventListener("DOMContentLoaded", function () {
+    let buttons = document.getElementsByTagName("button");
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
+            if (this.getAttribute("data-type") === "start") {
+                this.classList.add("start-clicked"); //need to prevent clicking
+                startGame();
+                createRestartButton();
+                console.log("Ready to play!");
+            }
+        });
+    }
+});
+
+function createRestartButton() {}
+
+function startGame() {}
+
+function checkForMatch() {}
+
+function restartGame() {}
