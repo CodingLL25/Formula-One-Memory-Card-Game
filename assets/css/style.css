@@ -35,7 +35,7 @@ h1 {
     color: var(--highlight);
 }
 /* Games area - container style */
-.games-area {
+.games-area { /* Accidentally removed style when commiting controls area general style */
     background-color: var(--highlight);
     display: flex;
     flex-direction: column;
@@ -72,4 +72,76 @@ h1 {
     background-color: rgba(169, 49, 62, 0.5);
     color: white;
     transform: scale(1.2);
+}
+
+/* Cards area - container style */
+.cards-area {  /* Inspiration taken from "Coding Made Simple" - styling cards in CSS with a 3D effect */
+    display: grid;
+    grid-template-columns: repeat(4, 150px); /* Creates a 4 x 4 grid*/
+    grid-template-rows: repeat(4, 150px);
+    width: max-content;
+    gap: 15px;
+    max-width: 1200px;
+    align-items: center;
+    padding: 10px;
+    margin: 25px;
+}
+
+.card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px; /* 3D animation */
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    box-shadow: 5px 5px 2px 0px rgba(19, 21, 38, 0.6); /* add the box shadow around the cards */
+    transform: transform 1.0s;
+    transform-style: preserve-3d;
+}
+
+.card.clicked .card-inner {
+    transform: rotateY(180deg); /* Flips the card*/
+    background-color: white;
+}
+
+.card.matched .card-back {
+    filter: brightness(50%); /* Dims the brightness of the matched cards*/
+    transform: scale(1.0);
+    background-color: white;
+}
+
+.card-back, .card-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* the back of the card is hidden */
+}
+
+.card-front {
+    background-color: var(--tertiary-color);
+    font-size: larger;
+}
+
+.card-front:hover {
+    background-color: var(--light-highlight);
+    box-shadow: 5px 2px 2px 0px rgba(224, 201, 157, 0.4);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-back img {
+    width: 90%;
+    height: 90%;
 }
