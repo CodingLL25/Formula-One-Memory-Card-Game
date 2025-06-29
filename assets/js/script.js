@@ -51,8 +51,35 @@ function createRestartButton() {
     });
 }
 
-function startGame() {}
+// Build the cards for the game / create the game space
+function createCard() {
+    const card = document.createElement("div");
+    card.classList.add("card");
 
+    const cardInner = document.createElement("div");
+    cardInner.classList.add("card-inner");
+
+    const cardFront = document.createElement("div");
+    cardFront.classList.add("card-front");
+    cardFront.innerHTML = "?";
+
+    const cardBack = document.createElement("div");
+    cardBack.classList.add("card-back");
+
+    cardInner.appendChild(cardFront); // Create and append a div within the card-inner
+    cardInner.appendChild(cardBack); // Create and append a div within the card-inner
+
+    card.appendChild(cardInner); // Create and append a div within the card, called card-inner
+    return card; // creates the card
+
+};
+
+function addImages(card) {};
+
+function startGame() {};
+
+// Check for a match
 function checkForMatch() {}
 
+// Restart the game  
 function restartGame() {}
