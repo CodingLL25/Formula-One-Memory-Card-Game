@@ -12,3 +12,26 @@
     --light-highlight: rgb(124, 104, 68); /* Taupe */
     --bright-highlight: rgb(169, 49, 62); /* Pink highlight */
 }
+
+/* General styles */
+body {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: var(--primary-font);
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: var(--highlight);
+}
+
