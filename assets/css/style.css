@@ -74,6 +74,27 @@ h1 {
     transform: scale(1.2);
 }
 
+.restart-game {
+    margin: 20px;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--bright-highlight);
+    text-transform: uppercase;
+}
+
+.restart-game:hover {
+    background: var(--bright-highlight);
+    color: white;
+    transform: scale(1.2);
+}
+
+.restart-clicked, .start-clicked{
+    filter: brightness(50%); 
+}
+
+
 /* Cards area - container style */
 .cards-area {  /* Inspiration taken from "Coding Made Simple" - styling cards in CSS with a 3D effect */
     display: grid;
