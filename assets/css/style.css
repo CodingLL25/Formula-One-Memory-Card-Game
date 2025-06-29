@@ -35,3 +35,13 @@ h1 {
     color: var(--highlight);
 }
 
+/* Games area - container style */
+.games-area {
+    background-color: var(--highlight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
