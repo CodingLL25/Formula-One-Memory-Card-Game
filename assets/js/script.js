@@ -38,7 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function createRestartButton() {}
+function createRestartButton() {
+    const restart = document.createElement("button");
+    restart.classList.add("restart-game");
+    restart.innerHTML = "Restart game";
+    restart.setAttribute("data-type", "restart-game");
+    controlArea.appendChild(restart);
+
+    restart.addEventListener("click", () => {
+        restart.classList.add("restart-clicked");
+        restartGame();
+    });
+}
 
 function startGame() {}
 
