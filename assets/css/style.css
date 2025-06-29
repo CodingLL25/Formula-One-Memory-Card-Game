@@ -35,13 +35,32 @@ h1 {
     color: var(--highlight);
 }
 
-/* Games area - container style */
-.games-area {
-    background-color: var(--highlight);
+/* Controls area - container style */
+.control-area {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    height: 50px;
     width: 100%;
+    background-color: white;
+    justify-content: center;
 }
 
+.start {
+    margin: 20px;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+}
+
+.start:hover {
+    background: var(--light-highlight);
+    color: white;
+}
+
+.instructions:hover {
+    background-color: rgba(169, 49, 62, 0.5);
+    color: white;
+    transform: scale(1.2);
+}
