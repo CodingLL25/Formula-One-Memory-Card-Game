@@ -166,3 +166,19 @@ h1 {
     width: 90%;
     height: 90%;
 }
+
+/* Score and attempts left*/
+.score-and-attempts-area {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 150px;
+    background-color: rgba(12, 12, 20, 0.8);
+    color: var(--highlight);
+}
+
+.matched-cards, .attempts-area {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    font-size
