@@ -4,7 +4,6 @@ const card = document.querySelectorAll(".card");
 const controlArea = document.querySelector(".control-area");
 const scoresContainer = document.querySelector(".score-and-attempts-area");
 const instructions = document.querySelector(".instructions");
-const startButton = document.querySelector(".start-clicked");
 
 const cardArray = [
     './assets/images/image1.jpg',
@@ -30,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let button of buttons) {
         button.addEventListener("click", function () {
             if (this.getAttribute("data-type") === "start") {
-                this.classList.add("start-clicked"); //need to prevent clicking
+                this.classList.add("start-clicked");
                 startGame();
                 renderRestOfBoard();
                 createRestartButton();
@@ -181,9 +180,7 @@ function restartGame() { // need to get this to refresh
     matchedCardCount = 0; // resets matched cards to 0
     cardContainer.innerHTML = ""; // removes cards from the game
 
-    console.log("Restarted button has been selected");
+    console.log("Restart button has been selected");
     console.log(`Attempts made: ${attemptsMade}`);
     console.log(`Matched cards: ${matchedCardCount}`);
-
-
 }
