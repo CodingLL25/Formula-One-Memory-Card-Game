@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (this.getAttribute("data-type") === "start") {
                 this.classList.add("start-clicked"); //need to prevent clicking
                 startGame();
+                renderRestOfBoard();
                 createRestartButton();
                 console.log("Ready to play!");
             }
