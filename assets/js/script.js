@@ -3,7 +3,8 @@ const cardContainer = document.querySelector(".cards-area");
 const card = document.querySelectorAll(".card");
 const controlArea = document.querySelector(".control-area");
 const scoresContainer = document.querySelector(".score-and-attempts-area");
-const instructions = document.querySelector("instructions");
+const instructions = document.querySelector(".instructions");
+const startButton = document.querySelector(".start-clicked");
 
 const cardArray = [
     './assets/images/image1.jpg',
@@ -39,19 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function createRestartButton() {
-    const restart = document.createElement("button");
-    restart.classList.add("restart-game");
-    restart.innerHTML = "Restart game";
-    restart.setAttribute("data-type", "restart-game");
-    controlArea.appendChild(restart);
-
-    restart.addEventListener("click", () => {
-        restart.classList.add("restart-clicked");
-        restartGame();
-    });
-}
-
 // Build the cards for the game / create the game space
 function createCard() {
     const card = document.createElement("div");
@@ -82,8 +70,8 @@ function addImages(card) {
     let imageIndex;
 
     do {
-        imageIndex = Math.floor(Math.random() * cardArray.length);
-    } while (cardCounts[imageIndex] >= 2);
+        imageIndex = Math.floor(Math.random() * cardArray.length); // main body of the loop
+    } while (cardCounts[imageIndex] >= 2); // whilst this condition is met
 
     cardCounts[imageIndex] = (cardCounts[imageIndex] || 0) + 1;
 
@@ -94,18 +82,6 @@ function addImages(card) {
     cardBack.append(image); // Append image src to the back of the card
     return card; // exit the function
 };
-
-function renderRestOfBoard() { // scores here not updating but showing correctly in console log
-    const scoresArea = document.createElement("p");
-    scoresArea.classList.add("matched-cards");
-    scoresContainer.appendChild(scoresArea);
-    scoresArea.innerHTML = [`Matched cards: ${matchedCardCount} / 8 `];
-
-    const attemptsArea = document.createElement("p");
-    attemptsArea.classList.add("attempts-area");
-    scoresContainer.appendChild(attemptsArea);
-    attemptsArea.innerHTML = [`Attempts made: ${attemptsMade}`];
-}
 
 // Start the game
 function startGame() {
@@ -123,6 +99,32 @@ function startGame() {
         console.log(imageCard); // Shows the card images to be matched
     };
 };
+
+// Add restart button / rest of board
+function createRestartButton() {
+    const restart = document.createElement("button");
+    restart.classList.add("restart-game");
+    restart.innerHTML = "Restart game";
+    restart.setAttribute("data-type", "restart-game");
+    controlArea.appendChild(restart);
+
+    restart.addEventListener("click", () => {
+        controlArea.removeChild(restart);
+        restartGame();
+    });
+}
+
+function renderRestOfBoard() { // scores here not updating but showing correctly in console log
+    const scoresArea = document.createElement("p");
+    scoresArea.classList.add("matched-cards");
+    scoresContainer.appendChild(scoresArea);
+    scoresArea.innerHTML = [`Matched cards: ${matchedCardCount} / 8 `];
+
+    const attemptsArea = document.createElement("p");
+    attemptsArea.classList.add("attempts-area");
+    scoresContainer.appendChild(attemptsArea);
+    attemptsArea.innerHTML = [`Attempts made: ${attemptsMade}`];
+}
 
 
 // Check for a match
@@ -182,4 +184,6 @@ function restartGame() { // need to get this to refresh
     console.log("Restarted button has been selected");
     console.log(`Attempts made: ${attemptsMade}`);
     console.log(`Matched cards: ${matchedCardCount}`);
+
+
 }

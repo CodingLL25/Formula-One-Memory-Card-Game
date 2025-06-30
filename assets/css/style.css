@@ -91,7 +91,7 @@ h1 {
     transform: scale(1.2);
 }
 
-.restart-clicked, .start-clicked{
+.start-clicked{
     filter: brightness(50%); 
 }
 
