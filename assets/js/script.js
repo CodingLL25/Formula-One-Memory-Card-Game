@@ -74,9 +74,28 @@ function createCard() {
 
 };
 
-function addImages(card) {};
+function addImages(card) {
+    const cardBack = card.querySelector(".card-back");
+
+    // Pick a random image from the array and add to card
+    let imageIndex;
+
+    do {
+        imageIndex = Math.floor(Math.random() * cardArray.length);
+    } while (cardCounts[imageIndex] >= 2);
+
+    cardCounts[imageIndex] = (cardCounts[imageIndex] || 0) + 1;
+
+    card.setAttribute("data-index", imageIndex) // Set the ID as the image index
+
+    const image = document.createElement("img"); // Add image element
+    image.src = cardArray[imageIndex]; // Add the imange index from the card array 
+    cardBack.append(image); // Append image src to the back of the card
+    return card; // exit the function
+};
 
 function startGame() {};
+
 
 // Check for a match
 function checkForMatch() {}
