@@ -33,6 +33,7 @@ header {
 h1 {
     text-transform: uppercase;
     color: var(--highlight);
+    text-align: center;
 }
 /* Games area - container style */
 .games-area { /* Accidentally removed style when commiting controls area general style */
