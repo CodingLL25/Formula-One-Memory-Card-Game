@@ -126,7 +126,9 @@ function checkForMatch() {
             activeCards[1].classList = ["card matched"];
 
             matchedCardCount++;
+            attemptsMade++;
             console.log(`Matched cards: ${matchedCardCount}`);
+            console.log(`Attempts made: ${attemptsMade}`);
             returnCard();
         } else {
             setTimeout(() => {
