@@ -112,7 +112,50 @@ function startGame() {
 
 
 // Check for a match
-function checkForMatch() {}
+function checkForMatch() {
+    let activeCards = document.querySelectorAll(".clicked");
+
+    if (activeCards.length === 2) { // If two cards have been flipped, prevent further clicks
+        document.body.style.pointerEvents = "none";
+
+        let cardOne = activeCards[0].getAttribute("data-index");
+        let cardTwo = activeCards[1].getAttribute("data-index");
+
+        if (cardOne === cardTwo) {
+            activeCards[0].classList = ["card matched"];
+            activeCards[1].classList = ["card matched"];
+
+            matchedCardCount++;
+            console.log(`Matched cards: ${matchedCardCount}`);
+            returnCard();
+        } else {
+            setTimeout(() => {
+                returnCard();
+            }, 800);
+
+            attemptsMade++;
+            console.log(`Attempts made: ${attemptsMade}`);
+        }
+    };
+
+    if (matchedCardCount === 8) {
+        console.log("All cards have been matched!");
+        alert("Congratulations - you've matched all the cards in the game!")
+    };
+};
+
+function returnCard() {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        if (!card.classList.contains("matched")) {
+            card.classList = ["card"];
+            console.log("Unflip cards to be matched");
+            document.body.style.pointerEvents = "auto";
+        }
+    });
+
+}
 
 // Restart the game  
 function restartGame() {}
