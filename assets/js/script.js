@@ -94,7 +94,21 @@ function addImages(card) {
     return card; // exit the function
 };
 
-function startGame() {};
+function startGame() {
+    for (let i = 0; i < 16; i++) {
+        const card = createCard(); // card returned here
+        const imageCard = addImages(card);
+
+        card.addEventListener("click", () => {
+            card.classList.add("clicked"); // Add "clicked" to any card which has been clicked
+            let activeCards = document.querySelectorAll(".clicked");
+            checkForMatch(card);
+        });
+
+        cardContainer.appendChild(imageCard);
+        console.log(imageCard); // Shows the card images to be matched
+    };
+};
 
 
 // Check for a match
