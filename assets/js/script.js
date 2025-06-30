@@ -94,6 +94,19 @@ function addImages(card) {
     return card; // exit the function
 };
 
+function renderRestOfBoard() { // scores here not updating but showing correctly in console log
+    const scoresArea = document.createElement("p");
+    scoresArea.classList.add("matched-cards");
+    scoresContainer.appendChild(scoresArea);
+    scoresArea.innerHTML = [`Matched cards: ${matchedCardCount} / 8 `];
+
+    const attemptsArea = document.createElement("p");
+    attemptsArea.classList.add("attempts-area");
+    scoresContainer.appendChild(attemptsArea);
+    attemptsArea.innerHTML = [`Attempts made: ${attemptsMade}`];
+}
+
+// Start the game
 function startGame() {
     for (let i = 0; i < 16; i++) {
         const card = createCard(); // card returned here
@@ -149,7 +162,7 @@ function checkForMatch() {
 function returnCard() {
     const cards = document.querySelectorAll(".card");
 
-    cards.forEach(card => {
+    cards.forEach(card => { // for each card where "matched" not selected, resets class to "card"  therefore unflips the card
         if (!card.classList.contains("matched")) {
             card.classList = ["card"];
             console.log("Unflip cards to be matched");
