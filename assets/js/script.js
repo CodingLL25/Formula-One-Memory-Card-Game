@@ -160,4 +160,12 @@ function returnCard() {
 }
 
 // Restart the game  
-function restartGame() {}
+function restartGame() { // need to get this to refresh
+    attemptsMade = 0; // resets attempts to 0
+    matchedCardCount = 0; // resets matched cards to 0
+    cardContainer.innerHTML = ""; // removes cards from the game
+
+    console.log("Restarted button has been selected");
+    console.log(`Attempts made: ${attemptsMade}`);
+    console.log(`Matched cards: ${matchedCardCount}`);
+}
