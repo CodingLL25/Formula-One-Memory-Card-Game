@@ -182,4 +182,67 @@ h1 {
     display: flex;
     justify-content: center;
     font-size:xx-large;
+    padding: 10px;
+}
+
+/* Media query: large or landscape phones (576px and up) */
+@media screen and (max-width: 575px) {
+.cards-area { 
+    display: grid;
+    grid-template-columns: repeat(4, 70px); /* Creates a 4 x 4 grid*/
+    grid-template-rows: repeat(4, 70px);
+    width: max-content;
+    gap: 15px;
+    max-width: 1200px;
+    align-items: center;
+    padding: 10px;
+    margin: 25px;
+}
+
+.matched-cards, .attempts-area {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+}
+}
+
+
+/* Media query: large or landscape phones (576px and up) */
+@media screen and (min-width: 576px) {
+.cards-area { 
+    display: grid;
+    grid-template-columns: repeat(4, 100px); /* Creates a 4 x 4 grid*/
+    grid-template-rows: repeat(4, 100px);
+    width: max-content;
+    gap: 15px;
+    max-width: 1200px;
+    align-items: center;
+    padding: 10px;
+    margin: 25px;
+}
+}
+
+@media screen and (min-width: 768px) {
+.cards-area { 
+    display: grid;
+    grid-template-columns: repeat(4, 150px); /* Creates a 4 x 4 grid*/
+    grid-template-rows: repeat(4, 150px);
+    width: max-content;
+    gap: 15px;
+    max-width: 1200px;
+    align-items: center;
+    padding: 10px;
+    margin: 25px;
+}
+
+.score-and-attempts-area {
+    align-items: center;
+    justify-content: center;
+}
+
+.score-and-attempts-area > p {
+    width: 500px;
+    align-items: center;
+}
 }
