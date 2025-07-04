@@ -15,12 +15,25 @@
 
 /* General styles */
 body {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     width: 100%;
     flex-direction: column;
     font-family: var(--primary-font);
-    margin: 0;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+}
+
+main {
+    /* Main element to take up any surplus space to push footer down */
+    flex: 1 0 auto;
+    max-width: 1399px;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -35,6 +48,7 @@ h1 {
     color: var(--highlight);
     text-align: center;
 }
+
 /* Games area - container style */
 .games-area { /* Accidentally removed style when commiting controls area general style */
     background-color: var(--highlight);
@@ -53,6 +67,8 @@ h1 {
     width: 100%;
     background-color: white;
     justify-content: center;
+    position: absolute;
+    top: 0;
 }
 
 .start {
@@ -136,6 +152,7 @@ h1 {
     filter: brightness(50%); /* Dims the brightness of the matched cards*/
     transform: scale(1.0);
     background-color: white;
+    cursor: none;
 }
 
 .card-back, .card-front {
@@ -169,13 +186,15 @@ h1 {
 }
 
 /* Score and attempts left*/
+footer {
+    background-color: rgba(12, 12, 20, 0.8);
+    height: 150px;
+    color: var(--highlight);
+}
 .score-and-attempts-area {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 150px;
-    background-color: rgba(12, 12, 20, 0.8);
-    color: var(--highlight);
 }
 
 .matched-cards, .attempts-area {
