@@ -107,10 +107,6 @@ h1 {
     transform: scale(1.2);
 }
 
-.start-clicked{
-    filter: brightness(50%); 
-}
-
 
 /* Cards area - container style */
 .cards-area {  /* Inspiration taken from "Coding Made Simple" - styling cards in CSS with a 3D effect */
@@ -139,7 +135,7 @@ h1 {
     height: 100%;
     text-align: center;
     box-shadow: 5px 5px 2px 0px rgba(19, 21, 38, 0.6); /* add the box shadow around the cards */
-    transform: transform 1.0s;
+    transform: transform 0s;
     transform-style: preserve-3d;
 }
 
