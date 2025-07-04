@@ -1,19 +1,42 @@
 // Variables
 const cardContainer = document.querySelector(".cards-area");
-const card = document.querySelectorAll(".card");
 const controlArea = document.querySelector(".control-area");
 const scoresContainer = document.querySelector(".score-and-attempts-area");
 const instructions = document.querySelector(".instructions");
+const startButton = document.querySelector(".start");
 
-const cardArray = [
-    './assets/images/image1.jpg',
-    './assets/images/image2.jpg',
-    './assets/images/image3.jpg',
-    './assets/images/image4.jpg',
-    './assets/images/image5.jpg',
-    './assets/images/image6.jpg',
-    './assets/images/image7.jpg',
-    './assets/images/image8.jpg',
+const cardArray = [{
+        imagePath: 'assets/images/image1.jpg',
+        alt: 'Photo of a Ferrari F1 car heading down the straight in wet conditions'
+    },
+    {
+        imagePath: 'assets/images/image2.jpg',
+        alt: 'Close up photo of an F1 car, rear tyre'
+    },
+    {
+        imagePath: 'assets/images/image3.jpg',
+        alt: 'Photo of a McLaran F1 car on the race track'
+    },
+    {
+        imagePath: 'assets/images/image4.jpg',
+        alt: 'Photo of the back of two F1 cars, lined up in a straight line'
+    },
+    {
+        imagePath: 'assets/images/image5.jpg',
+        alt: 'Photo of a truck offloading a car, at the Monaco grand prix'
+    },
+    {
+        imagePath: 'assets/images/image6.jpg',
+        alt: 'Photo of a F1 car at the Azerbaijan grand prix in 2025, with the trophy'
+    },
+    {
+        imagePath: 'assets/images/image7.jpg',
+        alt: 'Photo from the grandstands at the Monaco grand prix, with a Ferrari on the track'
+    },
+    {
+        imagePath: './assets/images/image8.jpg',
+        alt: 'Photo of a Mercedes F1 car with smoke coming from the back of the car'
+    }
 ]
 
 console.log(cardArray);
@@ -21,22 +44,21 @@ console.log(cardArray);
 let cardCounts = {};
 let matchedCardCount = 0;
 let attemptsMade = 0;
+let card = document.querySelectorAll(".card");
+
+// Reference tutorial
+// https://www.youtube.com/watch?v=t3cydTwfEnM
 
 // Wait for the DOM to finish loading before running the game
 // add event listeners to the start button
 document.addEventListener("DOMContentLoaded", function () {
-    let buttons = document.getElementsByTagName("button");
-    for (let button of buttons) {
-        button.addEventListener("click", function () {
-            if (this.getAttribute("data-type") === "start") {
-                this.classList.add("start-clicked");
-                startGame();
-                renderRestOfBoard();
-                createRestartButton();
-                console.log("Ready to play!");
-            }
-        });
-    }
+    startButton.addEventListener("click", function () {
+        if (startButton.getAttribute("data-type") === "start") {
+            startButton.classList.add("start-clicked");
+            startGame();
+            console.log("Ready to play!");
+        }
+    });
 });
 
 // Build the cards for the game / create the game space
@@ -76,11 +98,57 @@ function addImages(card) {
 
     card.setAttribute("data-index", imageIndex) // Set the ID as the image index
 
+    cardInformation = cardArray[imageIndex];
+    console.log("Card Information:", cardInformation);
+    cardImage = cardInformation.imagePath
+    console.log(cardImage);
+
+    cardAlt = cardInformation.alt;
+    console.log(cardAlt);
+
+
     const image = document.createElement("img"); // Add image element
-    image.src = cardArray[imageIndex]; // Add the imange index from the card array 
+    image.src = cardImage; // Add the imange index from the card array
+    image.alt = cardAlt;
+
     cardBack.append(image); // Append image src to the back of the card
     return card; // exit the function
 };
+
+// Add restart button / rest of board
+function createRestartButton() {
+    const restart = document.createElement("button");
+    restart.classList.add("restart-game");
+    restart.innerHTML = "Restart game";
+    restart.setAttribute("data-type", "restart-game");
+    controlArea.appendChild(restart);
+
+    restart.addEventListener("click", () => {
+        attemptsMade = 0; // resets attempts to 0
+        matchedCardCount = 0; // resets matched cards to 0
+        cardContainer.innerHTML = ""; // removes cards from the game
+
+        controlArea.removeChild(restart);
+        let startButton = document.querySelector(".start-clicked");
+        startButton.classList.remove("start-clicked");
+
+        console.log("Restart button has been selected");
+        console.log(`Attempts made: ${attemptsMade}`);
+        console.log(`Matched cards: ${matchedCardCount}`);
+    });
+}
+
+function renderRestOfBoard() { // scores here not updating but showing correctly in console log
+    const scoresArea = document.createElement("p");
+    scoresArea.classList.add("matched-cards");
+    scoresContainer.appendChild(scoresArea);
+    scoresArea.innerHTML = [`Matched cards: ${matchedCardCount} / 8 `]; // BUG - need to make sure scores are incrementing
+
+    const attemptsArea = document.createElement("p");
+    attemptsArea.classList.add("attempts-area");
+    scoresContainer.appendChild(attemptsArea);
+    attemptsArea.innerHTML = [`Attempts made: ${attemptsMade}`]; // BUG - need to make sure scores are incrementing
+}
 
 // Start the game
 function startGame() {
@@ -97,33 +165,10 @@ function startGame() {
         cardContainer.appendChild(imageCard);
         console.log(imageCard); // Shows the card images to be matched
     };
+
+    createRestartButton();
+    renderRestOfBoard();
 };
-
-// Add restart button / rest of board
-function createRestartButton() {
-    const restart = document.createElement("button");
-    restart.classList.add("restart-game");
-    restart.innerHTML = "Restart game";
-    restart.setAttribute("data-type", "restart-game");
-    controlArea.appendChild(restart);
-
-    restart.addEventListener("click", () => {
-        controlArea.removeChild(restart);
-        restartGame();
-    });
-}
-
-function renderRestOfBoard() { // scores here not updating but showing correctly in console log
-    const scoresArea = document.createElement("p");
-    scoresArea.classList.add("matched-cards");
-    scoresContainer.appendChild(scoresArea);
-    scoresArea.innerHTML = [`Matched cards: ${matchedCardCount} / 8 `];
-
-    const attemptsArea = document.createElement("p");
-    attemptsArea.classList.add("attempts-area");
-    scoresContainer.appendChild(attemptsArea);
-    attemptsArea.innerHTML = [`Attempts made: ${attemptsMade}`];
-}
 
 
 // Check for a match
@@ -144,26 +189,26 @@ function checkForMatch() {
             attemptsMade++;
             console.log(`Matched cards: ${matchedCardCount}`);
             console.log(`Attempts made: ${attemptsMade}`);
+
             returnCard();
         } else {
             setTimeout(() => {
                 returnCard();
-            }, 800);
+            }, 750);
 
             attemptsMade++;
             console.log(`Attempts made: ${attemptsMade}`);
         }
     };
 
-    if (matchedCardCount === 8) {
+    if (matchedCardCount === 8) { // BUG - didnt match all 8 and the alert appeared - managed to select a card which had been matched (shows as white) 
         console.log("All cards have been matched!");
-        alert("Congratulations - you've matched all the cards in the game!")
     };
 };
 
+
 function returnCard() {
     const cards = document.querySelectorAll(".card");
-
     cards.forEach(card => { // for each card where "matched" not selected, resets class to "card"  therefore unflips the card
         if (!card.classList.contains("matched")) {
             card.classList = ["card"];
@@ -171,16 +216,4 @@ function returnCard() {
             document.body.style.pointerEvents = "auto";
         }
     });
-
-}
-
-// Restart the game  
-function restartGame() { // need to get this to refresh
-    attemptsMade = 0; // resets attempts to 0
-    matchedCardCount = 0; // resets matched cards to 0
-    cardContainer.innerHTML = ""; // removes cards from the game
-
-    console.log("Restart button has been selected");
-    console.log(`Attempts made: ${attemptsMade}`);
-    console.log(`Matched cards: ${matchedCardCount}`);
 }
