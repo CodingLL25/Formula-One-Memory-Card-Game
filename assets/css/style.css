@@ -193,11 +193,14 @@ footer {
     width: 100%;
 }
 
-.matched-cards, .attempts-area {
+.matched-area, .attempts-area {
     width: 50%;
     display: flex;
     justify-content: center;
     font-size:xx-large;
+}
+
+#matched-cards, #attempts-made {
     padding: 10px;
 }
 
