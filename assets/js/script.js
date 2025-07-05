@@ -47,13 +47,13 @@ const cardArray = [{
         imagePath: './assets/images/image8.jpg',
         alt: 'Photo of a Mercedes F1 car with smoke coming from the back of the car'
     }
-]
+];
+
 console.log(cardArray);
 
 let cardCounts = [];
 let matchedCardCount = 0;
 let attemptsMade = 0;
-let card = document.querySelectorAll(".card");
 
 // Reference tutorial
 // https://www.youtube.com/watch?v=t3cydTwfEnM
@@ -63,6 +63,7 @@ let card = document.querySelectorAll(".card");
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("start").addEventListener("click", function () {
         startGame();
+        controlArea.removeChild(startButton);
     });
 });
 
@@ -87,7 +88,7 @@ function createCard() {
     card.appendChild(cardInner); // Create and append a div within the card, called card-inner
     return card; // creates the card
 
-};
+}
 
 function addImages(card) {
     const cardBack = card.querySelector(".card-back");
@@ -101,14 +102,14 @@ function addImages(card) {
 
     cardCounts[imageIndex] = (cardCounts[imageIndex] || 0) + 1;
 
-    card.setAttribute("data-index", imageIndex) // Set the ID as the image index
+    card.setAttribute("data-index", imageIndex); // Set the ID as the image index
 
-    cardInformation = cardArray[imageIndex];
+    let cardInformation = cardArray[imageIndex];
     console.log("Card Information:", cardInformation);
-    cardImage = cardInformation.imagePath
+    let cardImage = cardInformation.imagePath;
     console.log(cardImage);
 
-    cardAlt = cardInformation.alt;
+    let cardAlt = cardInformation.alt;
     console.log(cardAlt);
 
 
@@ -118,47 +119,54 @@ function addImages(card) {
 
     cardBack.append(image); // Append image to the back of the card
     return card; // exit the function
-};
+}
 
-function createRestart() {
-    const restart = document.createElement("button");
-    restart.classList.add("restart-game");
-    restart.innerHTML = "Restart game";
-    restart.setAttribute("data-type", "restart-game");
-    controlArea.appendChild(restart);
+function createReset() {
+    const reset = document.createElement("button");
+    reset.classList.add("reset-board");
+    reset.innerHTML = "Reset board";
+    reset.setAttribute("data-type", "reset-board");
+    controlArea.appendChild(reset);
 
-    restart.addEventListener("click", () => {
-        attemptsMade = 0; // resets attempts to 0
-        matchedCardCount = 0; // resets matched cards to 0
-        let cardCounts = [];
-        cardContainer.innerHTML = ""; // removes cards from the game
+    reset.addEventListener("click", () => {
+        // Reset the board
+        controlArea.removeChild(reset);
+        attemptsMade = 0;
+        matchedCardCount = 0;
+        cardContainer.innerHTML = "";
 
         console.log("Restart button has been selected");
         console.log(`Attempts made: ${attemptsMade}`);
         console.log(`Matched cards: ${matchedCardCount}`);
+
+        // Create a restart game button
+        const restart = document.createElement("button");
+        restart.classList.add("restart-board");
+        restart.innerHTML = "Restart game";
+        restart.setAttribute("data-type", "restart-game");
+        controlArea.appendChild(restart);
+
+        restart.addEventListener("click", restartGame());
     });
 }
 
 // Start the game
 function startGame() {
-    controlArea.removeChild(startButton);
-
     for (let i = 0; i < 16; i++) {
         const card = createCard(); // card returned here
         const imageCard = addImages(card);
 
         card.addEventListener("click", () => {
             card.classList.add("clicked"); // Add "clicked" to any card which has been clicked
-            let activeCards = document.querySelectorAll(".clicked");
             checkForMatch(card);
         });
 
         cardContainer.appendChild(imageCard);
         console.log(imageCard); // Shows the card images to be matched
-    };
+    }
 
-    createRestart();
-};
+    createReset();
+}
 
 
 // Check for a match
@@ -176,7 +184,7 @@ function checkForMatch() {
             activeCards[1].classList = ["card matched"];
 
             updateMatchedCards();
-            updateAttempts;
+            updateAttempts();
             returnCard();
         } else {
             setTimeout(() => {
@@ -184,15 +192,15 @@ function checkForMatch() {
             }, 750);
             updateAttempts();
         }
-    };
+    }
 
     if (matchedCardCount === 8) {
         console.log("All cards have been matched!");
         setTimeout(() => {
-            alert(`Congratulations! You have matched all cards in the game!`)
-        }, 300)
-    };
-};
+            alert(`Congratulations! You have matched all cards in the game!`);
+        }, 300);
+    }
+}
 
 function updateMatchedCards() {
     let matchedCardCount = parseInt(document.getElementById("matched-cards").innerText);
@@ -219,5 +227,6 @@ function returnCard() {
 
 
 function restartGame() {
+    console.log("function working");
     startGame();
 }
