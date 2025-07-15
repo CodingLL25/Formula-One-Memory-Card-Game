@@ -6,8 +6,7 @@
     /*--variable-name */
     --primary-font: "Oswald", sans-serif;
     --primary-color: rgb(12, 12, 20); /* Dark Blue/Black */
-    --secondary-color: #0E101C; /* Blue/Black */
-    --tertiary-color: rgb(19, 21, 38); /* Lighter Blue/Black */
+    --secondary-color: rgb(19, 21, 38); /* Lighter Blue/Black */
     --highlight: #D8D7DE; /* Grey */
     --light-highlight: rgb(124, 104, 68); /* Taupe */
     --bright-highlight: rgb(169, 49, 62); /* Pink highlight */
@@ -51,7 +50,7 @@ h1 {
 }
 
 /* Games area - container style */
-.games-area { /* Accidentally removed style when commiting controls area general style */
+.games-area { 
     background-color: var(--highlight);
     display: flex;
     flex-direction: column;
@@ -70,9 +69,10 @@ h1 {
     justify-content: center;
     position: absolute;
     top: 0;
+    position: relative;
 }
 
-.start {
+.start, .new-start, .restart-board {
     margin: 20px;
     width: 150px;
     height: 35px;
@@ -81,7 +81,7 @@ h1 {
     background-color: white;
 }
 
-.start:hover {
+.start:hover, .new-start:hover, .restart-board:hover {
     background: var(--light-highlight);
     color: white;
 }
@@ -92,7 +92,7 @@ h1 {
     transform: scale(1.2);
 }
 
-.restart-game {
+.reset-board {
     margin: 20px;
     width: 150px;
     height: 35px;
@@ -102,7 +102,7 @@ h1 {
     text-transform: uppercase;
 }
 
-.restart-game:hover {
+.reset-board:hover {
     background: var(--bright-highlight);
     color: white;
     transform: scale(1.2);
@@ -116,10 +116,10 @@ h1 {
     grid-template-rows: repeat(4, 150px);
     width: max-content;
     gap: 15px;
-    max-width: 1200px;
     align-items: center;
     padding: 10px;
     margin: 25px;
+        position: relative;
 }
 
 .card {
@@ -164,7 +164,7 @@ h1 {
 }
 
 .card-front {
-    background-color: var(--tertiary-color);
+    background-color: var(--secondary-color);
     font-size: larger;
 }
 
@@ -213,7 +213,6 @@ footer {
     grid-template-rows: repeat(4, 70px);
     width: max-content;
     gap: 15px;
-    max-width: 1200px;
     align-items: center;
     padding: 10px;
     margin: 25px;
