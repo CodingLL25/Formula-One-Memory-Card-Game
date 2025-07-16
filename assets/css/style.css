@@ -209,7 +209,7 @@ footer {
     padding: 10px;
 }
 
-/* Media query: large or landscape phones (576px and up) */
+/* Media query: smaller devices) */
 @media screen and (max-width: 575px) {
 .cards-area { 
     display: grid;
@@ -222,7 +222,7 @@ footer {
     margin: 25px;
 }
 
-.matched-cards, .attempts-area {
+.matched-area, .attempts-area {
     width: 50%;
     display: flex;
     justify-content: center;
@@ -245,6 +245,7 @@ footer {
     margin: 25px;
 }
 }
+
 
 @media screen and (min-width: 768px) {
 .cards-area { 
