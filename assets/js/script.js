@@ -14,6 +14,11 @@ console.log(instructions);
 const startButton = document.getElementById("start");
 console.log(startButton);
 
+const resetButton = document.getElementById("reset-board");
+console.log(resetButton);
+
+const matchedCards = document.getElementById("matched-cards");
+const attempts = document.getElementById("attempts-made");
 
 const cardArray = [{
         imagePath: 'assets/images/image1.jpg',
@@ -59,12 +64,40 @@ let attemptsMade = 0;
 // https://www.youtube.com/watch?v=t3cydTwfEnM
 
 // Wait for the DOM to finish loading before running the game
-// add event listeners to the start button
+// add event listeners 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("start").addEventListener("click", function () {
         startGame();
-        controlArea.removeChild(startButton);
     });
+});
+
+startButton.addEventListener("click", () => {
+    console.log("Time to play");
+    controlArea.removeChild(startButton);
+    resetButton.classList.add("reset-board-shown");
+});
+
+instructions.addEventListener("click", () => {
+    console.log("Show game instructions");
+    alert(`Welcome to the Formula One - Flip Card Memory Game! There are eight F1 related images behind this cards, match all 8 to win the game!`);
+});
+
+// Restart game
+function restartGame() {
+    cardCounts = {};
+    matchedCardCount = 0;
+    matchedCards.innerHTML = `${matchedCardCount}`;
+
+    attemptsMade = 0;
+    attempts.innerHTML = `${attemptsMade}`;
+
+    cardContainer.innerHTML = "";
+    startGame();
+    alert(`Cards have been reshuffled - time to play again!`);
+}
+
+resetButton.addEventListener("click", () => {
+    restartGame();
 });
 
 // Build the cards for the game and render the game (restart button, cards, scores and attempts)
@@ -102,15 +135,14 @@ function addImages(card) {
 
     cardCounts[imageIndex] = (cardCounts[imageIndex] || 0) + 1;
 
-    card.setAttribute("data-index", imageIndex); // Set the ID as the image index
+    card.setAttribute("data-index", imageIndex);
 
     let cardInformation = cardArray[imageIndex];
-    console.log("Card Information:", cardInformation);
     let cardImage = cardInformation.imagePath;
-    console.log(cardImage);
+    console.log(`Image: ${cardImage}`);
 
     let cardAlt = cardInformation.alt;
-    console.log(cardAlt);
+    console.log(`Alt: ${cardAlt}`);
 
 
     const image = document.createElement("img"); // Add image element
@@ -121,34 +153,6 @@ function addImages(card) {
     return card; // exit the function
 }
 
-function createReset() {
-    const reset = document.createElement("button");
-    reset.classList.add("reset-board");
-    reset.innerHTML = "Reset board";
-    reset.setAttribute("data-type", "reset-board");
-    controlArea.appendChild(reset);
-
-    reset.addEventListener("click", () => {
-        // Reset the board
-        controlArea.removeChild(reset);
-        attemptsMade = 0;
-        matchedCardCount = 0;
-        cardContainer.innerHTML = "";
-
-        console.log("Restart button has been selected");
-        console.log(`Attempts made: ${attemptsMade}`);
-        console.log(`Matched cards: ${matchedCardCount}`);
-
-        // Create a restart game button
-        const restart = document.createElement("button");
-        restart.classList.add("restart-board");
-        restart.innerHTML = "Restart game";
-        restart.setAttribute("data-type", "restart-game");
-        controlArea.appendChild(restart);
-
-        restart.addEventListener("click", restartGame());
-    });
-}
 
 // Start the game
 function startGame() {
@@ -162,57 +166,57 @@ function startGame() {
         });
 
         cardContainer.appendChild(imageCard);
-        console.log(imageCard); // Shows the card images to be matched
     }
-
-    createReset();
+    console.log("Cards ready for matching");
 }
 
 
 // Check for a match
 function checkForMatch() {
-    let activeCards = document.querySelectorAll(".clicked");
+    if (matchedCardCount !== 8) {
+        let activeCards = document.querySelectorAll(".clicked");
 
-    if (activeCards.length === 2) { // If two cards have been flipped, prevent further clicks
-        document.body.style.pointerEvents = "none";
+        if (activeCards.length === 2) { // If two cards have been flipped, prevent further clicks
+            document.body.style.pointerEvents = "none";
 
-        let cardOne = activeCards[0].getAttribute("data-index");
-        let cardTwo = activeCards[1].getAttribute("data-index");
+            let cardOne = activeCards[0].getAttribute("data-index");
+            let cardTwo = activeCards[1].getAttribute("data-index");
 
-        if (cardOne === cardTwo) {
-            activeCards[0].classList = ["card matched"];
-            activeCards[1].classList = ["card matched"];
+            if (cardOne === cardTwo) {
+                activeCards[0].classList = ["card matched"];
+                activeCards[1].classList = ["card matched"];
 
-            updateMatchedCards();
-            updateAttempts();
-            returnCard();
-        } else {
-            setTimeout(() => {
+                matchedCardCount = matchedCardCount + 1;
+                matchedCards.innerHTML = `${matchedCardCount}`;
+
+                attemptsMade = attemptsMade + 1;
+                attempts.innerHTML = `${attemptsMade}`;
+
                 returnCard();
-            }, 750);
-            updateAttempts();
-        }
-    }
 
-    if (matchedCardCount === 8) {
+            } else {
+                setTimeout(() => {
+                    returnCard();
+                }, 750);
+
+
+                attemptsMade = attemptsMade + 1;
+                attempts.innerHTML = `${attemptsMade}`;
+            }
+
+            return;
+        }
+    } else {
         console.log("All cards have been matched!");
         setTimeout(() => {
             alert(`Congratulations! You have matched all cards in the game!`);
         }, 300);
     }
+
+    return;
 }
 
-function updateMatchedCards() {
-    let matchedCardCount = parseInt(document.getElementById("matched-cards").innerText);
-    document.getElementById("matched-cards").innerText = ++attemptsMade;
-    console.log(`Matched cards: ${matchedCardCount}`);
-}
 
-function updateAttempts() {
-    let attemptsMade = parseInt(document.getElementById("attempts-made").innerText);
-    document.getElementById("attempts-made").innerText = ++attemptsMade;
-    console.log(`Attempts made: ${attemptsMade}`);
-}
 
 function returnCard() {
     const cards = document.querySelectorAll(".card");
@@ -223,10 +227,11 @@ function returnCard() {
             document.body.style.pointerEvents = "auto";
         }
     });
-}
 
-
-function restartGame() {
-    console.log("function working");
-    startGame();
+    if (matchedCardCount === 8) {
+        console.log("All cards have been matched!");
+        setTimeout(() => {
+            alert(`Congratulations! You have matched all cards in the game!`);
+        }, 300);
+    }
 }
