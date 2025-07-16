@@ -69,7 +69,6 @@ h1 {
     justify-content: center;
     position: absolute;
     top: 0;
-    position: relative;
 }
 
 .start, .new-start, .restart-board {
@@ -93,6 +92,12 @@ h1 {
 }
 
 .reset-board {
+    background-color: white;
+    color: white;
+    border: 0px white;
+}
+
+.reset-board-shown {
     margin: 20px;
     width: 150px;
     height: 35px;
@@ -101,8 +106,7 @@ h1 {
     background-color: var(--bright-highlight);
     text-transform: uppercase;
 }
-
-.reset-board:hover {
+.reset-board-shown:hover {
     background: var(--bright-highlight);
     color: white;
     transform: scale(1.2);
