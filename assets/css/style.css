@@ -14,7 +14,7 @@
 
 /* General styles */
 body {
-    max-height: 100vh;
+    min-height: 100vh;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -68,7 +68,7 @@ h1 {
     width: 100%;
     background-color: white;
     justify-content: center;
-    position: relative;
+    position: absolute;
     top: 0;
 }
 
@@ -282,5 +282,51 @@ footer {
 
 .matched-cards, .attempts-made {
     font-size: large;
+}
+}
+
+/* Media query: large devices (992px and up) */
+@media screen and (min-width: 992px) {
+.cards-area { 
+    display: grid;
+    grid-template-columns: repeat(4, 130px); 
+    grid-template-rows: repeat(4, 130px);
+    width: max-content;
+    gap: 10px;
+    max-width: 1200px;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.matched-area, .attempts-area {
+    font-size: x-large;
+}
+
+.matched-cards, .attempts-made {
+    font-size: x-large;
+}
+}
+
+/* Media query: extra large devices (1200px and up) */
+@media screen and (min-width: 1200px) {
+.cards-area { 
+    display: grid;
+    grid-template-columns: repeat(4, 200px); 
+    grid-template-rows: repeat(4, 200px);
+    width: max-content;
+    gap: 10px;
+    max-width: 1200px;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.matched-area, .attempts-area {
+    font-size: xx-large;
+}
+
+.matched-cards, .attempts-made {
+    font-size: xx-large;
 }
 }
