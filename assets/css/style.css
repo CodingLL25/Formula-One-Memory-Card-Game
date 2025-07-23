@@ -87,6 +87,7 @@ h1 {
     text-align: center;
     font-weight: bold;
     background-color: white;
+    cursor: pointer;
 }
 
 .start:hover,
@@ -94,18 +95,22 @@ h1 {
 .restart-board:hover {
     background: var(--light-highlight);
     color: white;
+    cursor: pointer;
 }
+
 
 .instructions:hover {
     background-color: rgba(169, 49, 62, 0.5);
     color: white;
     transform: scale(1.2);
+    cursor: pointer;
 }
 
 .reset-board {
     background-color: white;
     color: white;
     border: 0px white;
+    cursor: none;
 }
 
 .reset-board-shown {
@@ -116,12 +121,14 @@ h1 {
     font-weight: bold;
     background-color: var(--bright-highlight);
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .reset-board-shown:hover {
     background: var(--bright-highlight);
     color: white;
     transform: scale(1.2);
+    cursor: pointer;
 }
 
 
