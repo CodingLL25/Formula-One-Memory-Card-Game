@@ -5,11 +5,16 @@
 :root {
     /*--variable-name */
     --primary-font: "Oswald", sans-serif;
-    --primary-color: rgb(12, 12, 20); /* Dark Blue/Black */
-    --secondary-color: rgb(19, 21, 38); /* Lighter Blue/Black */
-    --highlight: #D8D7DE; /* Grey */
-    --light-highlight: rgb(124, 104, 68); /* Taupe */
-    --bright-highlight: rgb(169, 49, 62); /* Pink highlight */
+    --primary-color: rgb(12, 12, 20);
+    /* Dark Blue/Black */
+    --secondary-color: rgb(19, 21, 38);
+    /* Lighter Blue/Black */
+    --highlight: #D8D7DE;
+    /* Grey */
+    --light-highlight: rgb(124, 104, 68);
+    /* Taupe */
+    --bright-highlight: rgb(169, 49, 62);
+    /* Pink highlight */
 }
 
 /* General styles */
@@ -50,14 +55,15 @@ h1 {
 }
 
 /* Games area - container style */
-.games-area { 
+.games-area {
     background-color: var(--highlight);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: max-content;
+    max-width: 1300px;
+    height: 100%;
+    
 }
 
 /* Controls area - container style */
@@ -72,7 +78,9 @@ h1 {
     top: 0;
 }
 
-.start, .new-start, .restart-board {
+.start,
+.new-start,
+.restart-board {
     margin: 20px;
     width: 150px;
     height: 35px;
@@ -81,7 +89,9 @@ h1 {
     background-color: white;
 }
 
-.start:hover, .new-start:hover, .restart-board:hover {
+.start:hover,
+.new-start:hover,
+.restart-board:hover {
     background: var(--light-highlight);
     color: white;
 }
@@ -107,6 +117,7 @@ h1 {
     background-color: var(--bright-highlight);
     text-transform: uppercase;
 }
+
 .reset-board-shown:hover {
     background: var(--bright-highlight);
     color: white;
@@ -115,11 +126,13 @@ h1 {
 
 
 /* Cards area - container style */
-.cards-area {  /* Inspiration taken from "Coding Made Simple" - styling cards in CSS with a 3D effect */
+.cards-area {
+    /* Inspiration taken from "Coding Made Simple" - styling cards in CSS with a 3D effect */
     display: grid;
-    grid-template-columns: repeat(4, 150px); /* Creates a 4 x 4 grid*/
+        /* Creates a 4 x 4 grid*/
+    grid-template-columns: repeat(4, 150px);
     grid-template-rows: repeat(4, 150px);
-    width: max-content;
+    width: 100%;
     gap: 15px;
     align-items: center;
     padding: 10px;
@@ -131,7 +144,8 @@ h1 {
     display: flex;
     width: 100%;
     height: 100%;
-    perspective: 1000px; /* 3D animation */
+    perspective: 1000px;
+    /* 3D animation */
     cursor: pointer;
 }
 
@@ -140,24 +154,28 @@ h1 {
     width: 100%;
     height: 100%;
     text-align: center;
-    box-shadow: 5px 5px 2px 0px rgba(19, 21, 38, 0.6); /* add the box shadow around the cards */
+    box-shadow: 5px 5px 2px 0px rgba(19, 21, 38, 0.6);
+    /* add the box shadow around the cards */
     transform: transform 0s;
     transform-style: preserve-3d;
 }
 
 .card.clicked .card-inner {
-    transform: rotateY(180deg); /* Flips the card*/
+    transform: rotateY(180deg);
+    /* Flips the card*/
     background-color: white;
 }
 
 .card.matched .card-back {
-    filter: brightness(50%); /* Dims the brightness of the matched cards*/
+    filter: brightness(50%);
+    /* Dims the brightness of the matched cards*/
     transform: scale(1.0);
     background-color: white;
     cursor: none;
 }
 
-.card-back, .card-front {
+.card-back,
+.card-front {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,7 +183,8 @@ h1 {
     color: white;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* the back of the card is hidden */
+    backface-visibility: hidden;
+    /* the back of the card is hidden */
 }
 
 .card-front {
@@ -201,132 +220,145 @@ footer {
     width: 100%;
 }
 
-.matched-area, .attempts-area {
+.matched-area,
+.attempts-area {
     width: 50%;
     display: flex;
     justify-content: end;
-    font-size:xx-large;
+    font-size: xx-large;
 }
 
-.matched-cards, .attempts-made {
+.matched-cards,
+.attempts-made {
     width: 50%;
     display: flex;
     justify-content: center;
-    font-size:xx-large
+    font-size: xx-large
 }
 
 /* Media query: extra small devices, phones) */
 @media screen and (max-width: 575px) {
-.cards-area { 
-    display: grid;
-    grid-template-columns: repeat(4, 70px); /* Creates a 4 x 4 grid*/
-    grid-template-rows: repeat(4, 70px);
-    width: max-content;
-    gap: 10px;
-    align-items: center;
-    padding: 5px;
-    margin: 10px;
-}
+    .cards-area {
+        display: grid;
+        grid-template-columns: repeat(4, 70px);
+        /* Creates a 4 x 4 grid*/
+        grid-template-rows: repeat(4, 70px);
+        width: max-content;
+        gap: 10px;
+        align-items: center;
+        padding: 5px;
+        margin: 10px;
+    }
 
-.matched-area, .attempts-area {
-    font-size: medium;
-}
+    .matched-area,
+    .attempts-area {
+        font-size: medium;
+    }
 
-.matched-cards, .attempts-made {
-    font-size: medium;
-}
+    .matched-cards,
+    .attempts-made {
+        font-size: medium;
+    }
 
 }
 
 /* Media query: small devices (576px and up) */
 @media screen and (min-width: 576px) {
-.cards-area { 
-    display: grid;
-    grid-template-columns: repeat(4, 100px); 
-    grid-template-rows: repeat(4, 100px);
-    width: max-content;
-    gap: 10px;
-    max-width: 1200px;
-    align-items: center;
-    padding: 5px;
-    margin: 10px;
-}
+    .cards-area {
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(4, 100px);
+        width: max-content;
+        gap: 10px;
+        max-width: 1200px;
+        align-items: center;
+        padding: 5px;
+        margin: 10px;
+    }
 
-.matched-area, .attempts-area {
-    font-size: large;
-}
+    .matched-area,
+    .attempts-area {
+        font-size: large;
+    }
 
-.matched-cards, .attempts-made {
-    font-size: large;
-}
+    .matched-cards,
+    .attempts-made {
+        font-size: large;
+    }
 }
 
 
 /* Media query: medium devices (768px and up) */
 @media screen and (min-width: 768px) {
-.cards-area { 
-    display: grid;
-    grid-template-columns: repeat(4, 110px); 
-    grid-template-rows: repeat(4, 110px);
-    width: max-content;
-    gap: 10px;
-    max-width: 1200px;
-    align-items: center;
-    padding: 5px;
-    margin: 10px;
-}
+    .cards-area {
+        display: grid;
+        grid-template-columns: repeat(4, 110px);
+        grid-template-rows: repeat(4, 110px);
+        width: max-content;
+        gap: 10px;
+        max-width: 1200px;
+        align-items: center;
+        padding: 5px;
+        margin: 10px;
+    }
 
-.matched-area, .attempts-area {
-    font-size: large;
-}
+    .matched-area,
+    .attempts-area {
+        font-size: large;
+    }
 
-.matched-cards, .attempts-made {
-    font-size: large;
-}
+    .matched-cards,
+    .attempts-made {
+        font-size: large;
+    }
 }
 
 /* Media query: large devices (992px and up) */
 @media screen and (min-width: 992px) {
-.cards-area { 
-    display: grid;
-    grid-template-columns: repeat(4, 130px); 
-    grid-template-rows: repeat(4, 130px);
-    width: max-content;
-    gap: 10px;
-    max-width: 1200px;
-    align-items: center;
-    padding: 5px;
-    margin: 10px;
-}
+    .cards-area {
+        display: grid;
+        grid-template-columns: repeat(4, 130px);
+        grid-template-rows: repeat(4, 130px);
+        width: max-content;
+        gap: 10px;
+        max-width: 1200px;
+        align-items: center;
+        padding: 5px;
+        margin: 10px;
+    }
 
-.matched-area, .attempts-area {
-    font-size: x-large;
-}
+    .matched-area,
+    .attempts-area {
+        font-size: x-large;
+    }
 
-.matched-cards, .attempts-made {
-    font-size: x-large;
-}
+    .matched-cards,
+    .attempts-made {
+        font-size: x-large;
+    }
 }
 
 /* Media query: extra large devices (1200px and up) */
 @media screen and (min-width: 1200px) {
-.cards-area { 
-    display: grid;
-    grid-template-columns: repeat(4, 180px); 
-    grid-template-rows: repeat(4, 180px);
-    width: max-content;
-    gap: 10px;
-    max-width: 1200px;
-    align-items: center;
-    padding: 5px;
-    margin: 10px;
-}
+    .cards-area {
+        display: grid;
+        grid-template-columns: repeat(4, 180px);
+        grid-template-rows: repeat(4, 180px);
+        width: max-content;
+        gap: 10px;
+        max-width: 1200px;
+        align-items: center;
+        padding: 5px;
+        margin: 10px;
+    }
 
-.matched-area, .attempts-area {
-    font-size: xx-large;
-}
+    .matched-area,
+    .attempts-area {
+        font-size: xx-large;
+    }
 
-.matched-cards, .attempts-made {
-    font-size: xx-large;
-}
+    .matched-cards,
+    .attempts-made {
+        font-size: xx-large;
+    }
 }
