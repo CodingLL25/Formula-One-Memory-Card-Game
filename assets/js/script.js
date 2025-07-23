@@ -51,8 +51,11 @@ let attemptsMade = 0;
 // Reference tutorial
 // https://www.youtube.com/watch?v=t3cydTwfEnM
 
-// Wait for the DOM to finish loading before running the game
-// add event listeners 
+
+/**
+ * Wait for the DOM to finish loading before running the game
+ * add event listeners to start button and instructions
+ */
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("start").addEventListener("click", function () {
         startGame();
@@ -68,7 +71,11 @@ instructions.addEventListener("click", () => {
     alert(`Welcome to the Formula One - Flip Card Memory Game! There are eight F1 related images behind this cards, match all 8 to win the game!`);
 });
 
-// Restart game
+/**
+ * Restart game by resetting the card count and attempts made to 0
+ * Removing the cards from the cards-area
+ * Confirm to site user the game has been restarted
+ */
 function restartGame() {
     cardCounts = {};
     matchedCardCount = 0;
@@ -86,7 +93,9 @@ resetButton.addEventListener("click", () => {
     restartGame();
 });
 
-// Build the cards for the game and render the game (restart button, cards, scores and attempts)
+/**
+ * Build the cards for the game and render the game (restart button, cards, scores and attempts)
+ */
 function createCard() {
     const card = document.createElement("div");
     card.classList.add("card");
@@ -138,7 +147,9 @@ function addImages(card) {
 }
 
 
-// Start the game
+/**
+ * Start the game by creating the cards, appending the images, and adding event listeners to cards
+ */
 function startGame() {
     for (let i = 0; i < 16; i++) {
         const card = createCard(); // card returned here
@@ -154,7 +165,9 @@ function startGame() {
 }
 
 
-// Check for a match
+/**
+ * Once the game has been started, check the two flipped cards for a match
+ */
 function checkForMatch() {
     if (matchedCardCount !== 8) {
         let activeCards = document.querySelectorAll(".clicked");
@@ -200,7 +213,10 @@ function checkForMatch() {
 }
 
 
-
+/**
+ * Once the card has been checked for a match, return the unmatched cards for clicking.
+ * If all 8 cards have been matched, alert the site user
+ */
 function returnCard() {
     const cards = document.querySelectorAll(".card");
     cards.forEach(card => { // for each card where "matched" not selected, resets class to "card"  therefore unflips the card
