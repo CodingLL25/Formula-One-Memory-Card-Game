@@ -1,21 +1,15 @@
 // Variables
 const cardContainer = document.getElementById("cards-area");
-console.log(cardContainer);
 
 const controlArea = document.getElementById("control-area");
-console.log(controlArea);
 
 const scoresContainer = document.getElementById("score-and-attempts-area");
-console.log(scoresContainer);
 
 const instructions = document.getElementById("instructions");
-console.log(instructions);
 
 const startButton = document.getElementById("start");
-console.log(startButton);
 
 const resetButton = document.getElementById("reset-board");
-console.log(resetButton);
 
 const matchedCards = document.getElementById("matched-cards");
 const attempts = document.getElementById("attempts-made");
@@ -54,7 +48,6 @@ const cardArray = [{
     }
 ];
 
-console.log(cardArray);
 
 let cardCounts = [];
 let matchedCardCount = 0;
@@ -72,13 +65,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 startButton.addEventListener("click", () => {
-    console.log("Time to play");
     controlArea.removeChild(startButton);
     resetButton.classList.add("reset-board-shown");
 });
 
 instructions.addEventListener("click", () => {
-    console.log("Show game instructions");
     alert(`Welcome to the Formula One - Flip Card Memory Game! There are eight F1 related images behind this cards, match all 8 to win the game!`);
 });
 
@@ -139,10 +130,8 @@ function addImages(card) {
 
     let cardInformation = cardArray[imageIndex];
     let cardImage = cardInformation.imagePath;
-    console.log(`Image: ${cardImage}`);
 
     let cardAlt = cardInformation.alt;
-    console.log(`Alt: ${cardAlt}`);
 
 
     const image = document.createElement("img"); // Add image element
@@ -167,7 +156,6 @@ function startGame() {
 
         cardContainer.appendChild(imageCard);
     }
-    console.log("Cards ready for matching");
 }
 
 
@@ -207,7 +195,7 @@ function checkForMatch() {
             return;
         }
     } else {
-        console.log("All cards have been matched!");
+        ;
         setTimeout(() => {
             alert(`Congratulations! You have matched all cards in the game!`);
         }, 300);
@@ -223,13 +211,11 @@ function returnCard() {
     cards.forEach(card => { // for each card where "matched" not selected, resets class to "card"  therefore unflips the card
         if (!card.classList.contains("matched")) {
             card.classList = ["card"];
-            console.log("Unflip cards to be matched");
             document.body.style.pointerEvents = "auto";
         }
     });
 
     if (matchedCardCount === 8) {
-        console.log("All cards have been matched!");
         setTimeout(() => {
             alert(`Congratulations! You have matched all cards in the game!`);
         }, 300);
