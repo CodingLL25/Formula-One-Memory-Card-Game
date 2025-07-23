@@ -38,7 +38,7 @@ const cardArray = [{
         alt: 'Photo from the grandstands at the Monaco grand prix, with a Ferrari on the track'
     },
     {
-        imagePath: './assets/images/image8.jpg',
+        imagePath: 'assets/images/image8.jpg',
         alt: 'Photo of a Mercedes F1 car with smoke coming from the back of the car'
     }
 ];
@@ -94,7 +94,7 @@ resetButton.addEventListener("click", () => {
 });
 
 /**
- * Build the cards for the game and render the game (restart button, cards, scores and attempts)
+ * Build the cards for the game and add images to back of the cards
  */
 function createCard() {
     const card = document.createElement("div");
@@ -227,8 +227,10 @@ function returnCard() {
     });
 
     if (matchedCardCount === 8) {
+        document.body.style.pointerEvents = "auto";
         setTimeout(() => {
             alert(`Congratulations! You have matched all cards in the game!`);
         }, 300);
+
     }
 }
