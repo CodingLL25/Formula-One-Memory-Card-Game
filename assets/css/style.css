@@ -243,6 +243,11 @@ footer {
     font-size: xx-large
 }
 
+.github {
+    color: var(--highlight);
+    padding: 10px;
+}
+
 /* Media query: extra small devices, phones) */
 @media screen and (max-width: 575px) {
     .cards-area {
