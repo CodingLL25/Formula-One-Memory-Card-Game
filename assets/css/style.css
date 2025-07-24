@@ -169,7 +169,7 @@ h1 {
     background-color: white;
 }
 
-.card.matched .card-back {
+.card.disabled .card-back {
     filter: brightness(50%);
     transform: scale(1.0);
     background-color: white;
@@ -233,6 +233,7 @@ footer {
 .matched-area,
 .attempts-area {
     width: 50%;
+    padding: 10px;
     display: flex;
     font-size: xx-large;
     align-items: center;
