@@ -237,6 +237,7 @@ footer {
     display: flex;
     font-size: xx-large;
     align-items: center;
+    text-align: center;
 }
 
 .matched-cards,
