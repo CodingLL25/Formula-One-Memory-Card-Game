@@ -1,6 +1,7 @@
 // Variables
 const cardContainer = document.getElementById("cards-area");
 const controlArea = document.getElementById("control-area");
+const scoresContainer = document.getElementById("score-and-attempts-area");
 const instructions = document.getElementById("instructions");
 const startButton = document.getElementById("start");
 const resetButton = document.getElementById("reset-board");
@@ -230,5 +231,6 @@ function returnCard() {
             alert(`Congratulations! You have matched all cards in the game!`);
         }, 300);
 
+        document.getElementById("reset-board").disabled = false;
     }
 }
