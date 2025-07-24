@@ -169,7 +169,7 @@ h1 {
     background-color: white;
 }
 
-.card.disabled .card-back {
+.card.matched .card-back {
     filter: brightness(50%);
     transform: scale(1.0);
     background-color: white;
