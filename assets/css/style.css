@@ -138,8 +138,8 @@ h1 {
 .cards-area {
     /* Inspiration taken from "Coding Made Simple" - styling cards in CSS with a 3D effect */
     display: grid;
-    grid-template-columns: repeat(4, 150px);
-    grid-template-rows: repeat(4, 150px);
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: repeat(4, 70px);
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -237,9 +237,20 @@ footer {
     width: 50%;
     padding: 10px;
     display: flex;
-    font-size: xx-large;
+    font-size: medium;
     align-items: center;
     text-align: center;
+}
+
+
+.matched-area p,
+.attempts-area p {
+    width: 50%;
+}
+
+.matched-text,
+.attempts-text {
+    text-align: end;
 }
 
 .matched-cards,
@@ -247,7 +258,7 @@ footer {
     width: 100%;
     display: flex;
     justify-content: center;
-    font-size: xx-large;
+    font-size: medium;
 }
 
 .github {
@@ -258,24 +269,6 @@ footer {
     justify-content: center;
 }
 
-/* Media query: extra small devices, phones) */
-@media screen and (max-width: 575px) {
-    .cards-area {
-        grid-template-columns: repeat(4, 70px);
-        grid-template-rows: repeat(4, 70px);
-    }
-
-    .matched-area,
-    .attempts-area {
-        font-size: medium;
-    }
-
-    .matched-cards,
-    .attempts-made {
-        font-size: medium;
-    }
-
-}
 
 /* Media query: small devices (576px and up) */
 @media screen and (min-width: 576px) {
@@ -299,8 +292,8 @@ footer {
 /* Media query: medium devices (768px and up) */
 @media screen and (min-width: 768px) {
     .cards-area {
-        grid-template-columns: repeat(4, 120px);
-        grid-template-rows: repeat(4, 120px);
+        grid-template-columns: repeat(4, 125px);
+        grid-template-rows: repeat(4, 125px);
     }
 
     .matched-area,
@@ -317,8 +310,8 @@ footer {
 /* Media query: large devices (992px and up) */
 @media screen and (min-width: 992px) {
     .cards-area {
-        grid-template-columns: repeat(4, 130px);
-        grid-template-rows: repeat(4, 130px);
+        grid-template-columns: repeat(4, 140px);
+        grid-template-rows: repeat(4, 140px);
         gap: 15px;
     }
 
@@ -336,8 +329,8 @@ footer {
 /* Media query: extra large devices (1200px and up) */
 @media screen and (min-width: 1200px) {
     .cards-area {
-        grid-template-columns: repeat(4, 180px);
-        grid-template-rows: repeat(4, 180px);
+        grid-template-columns: repeat(4, 155px);
+        grid-template-rows: repeat(4, 155px);
         gap: 15px;
     }
 
@@ -349,5 +342,14 @@ footer {
     .matched-cards,
     .attempts-made {
         font-size: xx-large;
+    }
+}
+
+/* Media query: extra large devices (1400px and up) */
+@media screen and (min-width: 1400px) {
+    .cards-area {
+        grid-template-columns: repeat(4, 170px);
+        grid-template-rows: repeat(4, 170px);
+        gap: 15px;
     }
 }
