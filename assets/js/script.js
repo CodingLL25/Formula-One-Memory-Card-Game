@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 startButton.addEventListener("click", () => {
     controlArea.removeChild(startButton);
+    cardContainer.style.backgroundColor = "var(--highlight)";
     resetButton.classList.add("reset-board-shown");
 });
 
