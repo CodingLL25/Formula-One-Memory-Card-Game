@@ -231,6 +231,7 @@ footer {
     max-width: 1399px;
     width: 100%;
     display: flex;
+    height: 60px;
 }
 
 .matched-area,
@@ -240,6 +241,7 @@ footer {
     font-size: medium;
     align-items: center;
     text-align: center;
+    padding: 5px;
 }
 
 
@@ -264,7 +266,7 @@ footer {
 .github {
     display: flex;
     color: var(--highlight);
-    padding: 10px;
+    padding: 5px;
     align-items: center;
     justify-content: center;
 }
