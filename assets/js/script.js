@@ -48,7 +48,7 @@ let matchedCardCount = 0;
 let attemptsMade = 0;
 
 // Reference tutorial
-// https://www.youtube.com/watch?v=t3cydTwfEnM
+// Coding Made simple (https://www.youtube.com/watch?v=t3cydTwfEnM) step-by-step tutorial was followed (not one-for-one) throughout the development of this project for guidance and further understanding of how to apply js to this memory card game
 
 
 /**
