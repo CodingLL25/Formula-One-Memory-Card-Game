@@ -69,7 +69,7 @@ startButton.addEventListener("click", () => {
 });
 
 instructions.addEventListener("click", () => {
-    alert(`Welcome to the Formula One - Flip Card Memory Game! There are eight F1 related images behind this cards, match all 8 to win the game!`);
+    alert(`Welcome to the Formula One - Flip Card Memory Game! There are eight F1 related images behind the cards, match all 8 to win the game!`);
 });
 
 /**
