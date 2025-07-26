@@ -156,8 +156,10 @@ function startGame() {
         const imageCard = addImages(card);
 
         card.addEventListener("click", () => {
-            card.classList.add("clicked"); // Add "clicked" to any card which has been clicked
-            checkForMatch(card);
+            if (!card.classList.contains("matched")) {
+                card.classList.add("clicked"); // Add "clicked" to any card which has been clicked
+                checkForMatch(card);
+            }
         });
 
         cardContainer.appendChild(imageCard);
