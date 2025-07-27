@@ -110,12 +110,11 @@ function createCard() {
     const cardBack = document.createElement("div");
     cardBack.classList.add("card-back");
 
-    cardInner.appendChild(cardFront); // Create and append a div within the card-inner
-    cardInner.appendChild(cardBack); // Create and append a div within the card-inner
+    cardInner.appendChild(cardFront);
+    cardInner.appendChild(cardBack);
 
-    card.appendChild(cardInner); // Create and append a div within the card, called card-inner
-    return card; // creates the card
-
+    card.appendChild(cardInner);
+    return card;
 }
 
 function addImages(card) {
@@ -125,8 +124,8 @@ function addImages(card) {
     let imageIndex;
 
     do {
-        imageIndex = Math.floor(Math.random() * cardArray.length); // main body of the loop
-    } while (cardCounts[imageIndex] >= 2); // whilst this condition is met
+        imageIndex = Math.floor(Math.random() * cardArray.length);
+    } while (cardCounts[imageIndex] >= 2);
 
     cardCounts[imageIndex] = (cardCounts[imageIndex] || 0) + 1;
 
@@ -138,12 +137,11 @@ function addImages(card) {
     let cardAlt = cardInformation.alt;
 
 
-    const image = document.createElement("img"); // Add image element
-    image.src = cardImage; // Add the image index from the card array
-    image.alt = cardAlt; // Add the alt description from the card array
-
-    cardBack.append(image); // Append image to the back of the card
-    return card; // exit the function
+    const image = document.createElement("img");
+    image.src = cardImage;
+    image.alt = cardAlt;
+    cardBack.append(image);
+    return card;
 }
 
 
@@ -152,12 +150,12 @@ function addImages(card) {
  */
 function startGame() {
     for (let i = 0; i < 16; i++) {
-        const card = createCard(); // card returned here
+        const card = createCard();
         const imageCard = addImages(card);
 
         card.addEventListener("click", () => {
             if (!card.classList.contains("matched")) {
-                card.classList.add("clicked"); // Add "clicked" to any card which has been clicked
+                card.classList.add("clicked");
                 checkForMatch(card);
             }
         });
@@ -174,7 +172,7 @@ function checkForMatch() {
     if (matchedCardCount !== 8) {
         let activeCards = document.querySelectorAll(".clicked");
 
-        if (activeCards.length === 2) { // If two cards have been flipped, prevent further clicks
+        if (activeCards.length === 2) {
             document.body.style.pointerEvents = "none";
 
             let cardOne = activeCards[0].getAttribute("data-index");
@@ -220,7 +218,7 @@ function checkForMatch() {
  */
 function returnCard() {
     const cards = document.querySelectorAll(".card");
-    cards.forEach(card => { // for each card where "matched" not selected, resets class to "card"  therefore unflips the card
+    cards.forEach(card => {
         if (!card.classList.contains("matched")) {
             card.classList = ["card"];
             document.body.style.pointerEvents = "auto";
